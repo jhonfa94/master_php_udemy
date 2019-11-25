@@ -1,0 +1,37 @@
+Options All -Indexes
+
+RewriteEngine On
+RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?pagina=$1
+
+# CONDICIONES PARA TRABAJAR CON EL HTACCESS
+#RewriteCond %{HTTP_HOST} !^$
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteCond %{HTTPS} !on
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# asegurando el archivo htaccess
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+
+# denegar acceso a robots maliciosos, extractores de webs y navegadores offline
+RewriteBase /
+RewriteCond %{HTTP_USER_AGENT} ^Anarchie [OR]
+RewriteCond %{HTTP_USER_AGENT} ^ASPSeek [OR]
+RewriteCond %{HTTP_USER_AGENT} ^attach [OR]
+RewriteCond %{HTTP_USER_AGENT} ^autoemailspider [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Xenu [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Zeus.*Webster [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Zeus
+RewriteRule ^.* - [F,L]
+
+#https://uniwebsidad.com/tutoriales/trucos-y-ejemplos-de-configuracion-del-archivo-htaccess-de-apache?from=librosweb
+
+#https://ayudawp.com/todo-sobre-htaccess/#Limitando_metodos_de_peticion_GET_yPUT_al_servidor
+
+#http://www.emenia.es/como-crear-urls-amigables-con-htaccess/
+
+#https://www.webempresa.com/blog/codigos-utiles-htaccess-para-wordpress.html
