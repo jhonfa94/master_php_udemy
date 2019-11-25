@@ -26,7 +26,7 @@ if(isset($_GET["token"])){
 					</span>
 				</div>
 
-				<input type="text" class="form-control" value="<?php echo $usuario["nombre"]; ?>" placeholder="Escriba su nombre" id="nombre" name="actualizarNombre">
+				<input type="text" class="form-control" value="<?php echo $usuario["nombre"]; ?>" placeholder="Escriba su nombre" id="actualizarNombre" name="actualizarNombre">
 
 			</div>
 			
@@ -42,7 +42,7 @@ if(isset($_GET["token"])){
 					</span>
 				</div>
 
-				<input type="email" class="form-control" value="<?php echo $usuario["email"]; ?>" placeholder="Escriba su email" id="email" name="actualizarEmail">
+				<input type="email" class="form-control" value="<?php echo $usuario["email"]; ?>" placeholder="Escriba su email" id="actualizarEmail" name="actualizarEmail">
 			
 			</div>
 			
@@ -67,10 +67,11 @@ if(isset($_GET["token"])){
 
 		</div>
 
+
 		<?php
 
 		$actualizar = ControladorFormularios::ctrActualizarRegistro();
-
+		
 		if($actualizar == "ok"){
 
 			echo '<script>
@@ -81,22 +82,29 @@ if(isset($_GET["token"])){
 
 			}
 
+			var datos = new FormData();
+			datos.append("validarToken", "'.$usuario["token"].'");
+
+			$.ajax({
+
+				url: "ajax/formularios.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success:function(respuesta){
+
+					$("#actualizarNombre").val(respuesta["nombre"]);	
+					$("#actualizarEmail").val(respuesta["email"]);	
+				}
+
+			})
+
 			</script>';
 
-			echo '<div class="alert alert-success">El usuario ha sido actualizado</div>
-
-
-			<script>
-
-				setTimeout(function(){
-				
-					window.location = "index.php?pagina=inicio";
-
-				},3000);
-
-			</script>
-
-			';
+			echo '<div class="alert alert-success">El usuario ha sido actualizado</div>';
 
 		}
 

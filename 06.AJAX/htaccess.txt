@@ -1,8 +1,3 @@
-Options All -Indexes
-
-RewriteEngine On
-RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?pagina=$1
-
 #RewriteCond %{HTTP_HOST} !^$
 #RewriteCond %{HTTP_HOST} !^www\. [NC]
 #RewriteCond %{HTTPS} !on

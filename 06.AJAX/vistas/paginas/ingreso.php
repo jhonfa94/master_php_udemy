@@ -14,7 +14,7 @@
 					</span>
 				</div>
 
-				<input type="email" class="form-control" id="email" name="ingresoEmail">
+				<input type="email" class="form-control" name="ingresoEmail">
 			
 			</div>
 			
@@ -31,7 +31,7 @@
 					</span>
 				</div>
 
-				<input type="password" class="form-control" id="pwd" name="ingresoPassword">
+				<input type="password" class="form-control" name="ingresoPassword">
 
 			</div>
 

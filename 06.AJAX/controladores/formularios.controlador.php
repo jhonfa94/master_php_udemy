@@ -131,20 +131,19 @@ class ControladorFormularios{
 
 		if(isset($_POST["actualizarNombre"])){
 
+
 			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["actualizarNombre"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["actualizarEmail"])){
 
 				$usuario = ModeloFormularios::mdlSeleccionarRegistros("registros", "token", $_POST["tokenUsuario"]);
 
 				if($usuario["token"] == $_POST["tokenUsuario"]){
-
+					
 					if($_POST["actualizarPassword"] != ""){
 
 						if(preg_match('/^[0-9a-zA-Z]+$/', $_POST["actualizarPassword"])){
 
-
 							$password = crypt($_POST["actualizarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
 
 						}
 

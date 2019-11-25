@@ -193,5 +193,8 @@ session_start();
 
 	</div>
 
+
+<script src="vistas/js/script.js"></script>
+
 </body>
 </html>
