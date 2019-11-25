@@ -8,7 +8,7 @@ class Conexion{
 
 		$link = new PDO("mysql:host=localhost;dbname=curso-php", 
 			            "root", 
-			            "");
+			            "root");
 
 		$link->exec("set names utf8");
 
