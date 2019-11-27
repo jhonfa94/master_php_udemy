@@ -8,6 +8,10 @@
 	
 	<title>Juanito Travel</title>
 
+	<meta name="title" content="Juanito Travel">
+	<meta name="description" content="Este es el proyecto realizado mediante el curso de master en PHP de Juan Fernando Urrego, donde se explica paso a paso de crear sistemas de información con php">
+
+
 	<link rel="icon" href="vistas/img/icono.jpg">
 
 	<!--=====================================
@@ -66,9 +70,9 @@
 	include 'paginas/modulos/menu.php';
 	
 	/* NAVEGAR ENTRE PAGINAS */
-	#include 'paginas/inicio.php';
+	include 'paginas/inicio.php';
 	#include 'paginas/categorias.php';
-	include 'paginas/articulos.php';
+	#include 'paginas/articulos.php';
 	
 	
 	
