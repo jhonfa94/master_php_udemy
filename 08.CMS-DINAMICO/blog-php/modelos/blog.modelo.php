@@ -9,7 +9,7 @@ class ModeloBlog
 
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt->fetch();
 
         $stmt->close();
         $stmt = NULL;

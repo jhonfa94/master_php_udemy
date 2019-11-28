@@ -2,7 +2,10 @@
 
 $blog = ControladorBlog::ctrMostrarBlog();
 /* echo "<pre class='bg-white'>";
-var_dump($blog);
+#var_dump($blog);
+echo "<br><br><br><br><br><br>";
+print_r($blog);
+#print_r($blog["dominio"]);
 echo "</pre>"; */
 
 ?>
@@ -15,13 +18,27 @@ echo "</pre>"; */
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title><?php echo $blog["titulo"];?></title>
+	<title><?=$blog["titulo"];?></title>
 
-	<meta name="title" content="Juanito Travel">
-	<meta name="description" content="Este es el proyecto realizado mediante el curso de master en PHP de Juan Fernando Urrego, donde se explica paso a paso de crear sistemas de información con php">
+	<meta name="title" content="<?=$blog["titulo"];?>">
+	<meta name="description" content="<?=$blog["descripcion"];?>">
+	<?php 
+		$palabras_claves = json_decode($blog["palabras_claves"],true);
+		
+		$p_claves = '';
+		foreach ($palabras_claves as $key => $value) {
+			$p_claves .= "$value,";
+		}
+		
+		$p_claves = substr($p_claves,0,-1);
+		
+	
+	?>
+	<meta name="keywords" content="<?=$p_claves?>">
 
 
-	<link rel="icon" href="vistas/img/icono.jpg">
+	<!-- <link rel="icon" href="vistas/img/icono.jpg"> -->
+	<link rel="icon" href="<?=$blog["logo"]?>">
 
 	<!--=====================================
 	PLUGINS DE CSS
