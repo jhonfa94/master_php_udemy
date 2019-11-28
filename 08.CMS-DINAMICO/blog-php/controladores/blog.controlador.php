@@ -8,7 +8,19 @@ class ControladorBlog
 
         $tabla = "blog";
 
-        $respuesta = ModeloBlog::mdlMostrarblog($tabla);
+        $respuesta = ModeloBlog::mdlMostrarBlog($tabla);
+        
+        
+        return $respuesta;
+
+    }
+
+    /* Mostrar contenido tabla blog */
+    public static function ctrMostrarCategorias(){
+
+        $tabla = "categorias";
+
+        $respuesta = ModeloBlog::mdlMostrarCategorias($tabla);
         
         
         return $respuesta;

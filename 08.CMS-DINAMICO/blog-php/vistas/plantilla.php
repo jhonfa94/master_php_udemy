@@ -1,49 +1,105 @@
-<?php 
+<?php
 
 $blog = ControladorBlog::ctrMostrarBlog();
+$categorias = ControladorBlog::ctrMostrarCategorias();
 /* echo "<pre class='bg-white'>";
-#var_dump($blog);
 echo "<br><br><br><br><br><br>";
-print_r($blog);
-#print_r($blog["dominio"]);
+print_r($categorias);
 echo "</pre>"; */
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	
+
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title><?=$blog["titulo"];?></title>
 
-	<meta name="title" content="<?=$blog["titulo"];?>">
-	<meta name="description" content="<?=$blog["descripcion"];?>">
-	<?php 
-		$palabras_claves = json_decode($blog["palabras_claves"],true);
-		
+	<?php
+	$validarRuta = "";
+	if (isset($_GET['pagina'])) {
+
+		foreach ($categorias as $key => $value) {
+			if ($_GET['pagina'] == $value['ruta_categoria']) {
+
+				$validarRuta = "categorias";
+				break;
+			}
+		}
+
+		if ($validarRuta == "categorias") {
+
+
+			echo '
+				<title>' . $blog["titulo"] . ' | ' . $value['descripcion_categoria'] . '  </title>
+				<meta name="title" content="' . $value['titulo_categoria'] . '">
+				<meta name="description" content="' . $value['descripcion_categoria'] . '">
+			';
+
+			$palabras_claves = json_decode($value["p_claves_categoria"], true);
+
+			$p_claves = '';
+			foreach ($palabras_claves as $key => $value) {
+				$p_claves .= "$value,";
+			}
+
+			$p_claves = substr($p_claves, 0, -1);
+
+			echo '<meta name="keywords" content="' . $p_claves . '">';
+
+			
+			#include 'paginas/categorias.php';
+		} else {
+			echo '
+				<title>' . $blog["titulo"] . '</title>
+				<meta name="title" content="' . $blog["titulo"] . '">
+				<meta name="description" content="' . $blog["descripcion"] . '">
+			';
+
+			$palabras_claves = json_decode($blog["palabras_claves"], true);
+
+			$p_claves = '';
+			foreach ($palabras_claves as $key => $value) {
+				$p_claves .= "$value,";
+			}
+
+			$p_claves = substr($p_claves, 0, -1);
+
+			echo '<meta name="keywords" content="' . $p_claves . '">';
+
+			
+		}
+	} else {
+		echo '
+				<title>' . $blog["titulo"] . '</title>
+				<meta name="title" content="' . $blog["titulo"] . '">
+				<meta name="description" content="' . $blog["descripcion"] . '">
+			';
+
+		$palabras_claves = json_decode($blog["palabras_claves"], true);
+
 		$p_claves = '';
 		foreach ($palabras_claves as $key => $value) {
 			$p_claves .= "$value,";
 		}
-		
-		$p_claves = substr($p_claves,0,-1);
-		
-	
-	?>
-	<meta name="keywords" content="<?=$p_claves?>">
 
+		$p_claves = substr($p_claves, 0, -1);
+
+		echo '<meta name="keywords" content="' . $p_claves . '">';
+	}
+
+	?>
 
 	<!-- <link rel="icon" href="vistas/img/icono.jpg"> -->
-	<link rel="icon" href="<?=$blog["logo"]?>">
+	<link rel="icon" href="<?= $blog["logo"] ?>">
 
 	<!--=====================================
 	PLUGINS DE CSS
 	======================================-->
-	
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
@@ -73,7 +129,7 @@ echo "</pre>"; */
 	<!-- JdSlider -->
 	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
 	<script src="vistas/js/plugins/jquery.jdSlider-latest.js"></script>
-	
+
 	<!-- pagination -->
 	<!-- http://josecebe.github.io/twbs-pagination/ -->
 	<script src="vistas/js/plugins/pagination.min.js"></script>
@@ -88,26 +144,50 @@ echo "</pre>"; */
 
 <body>
 
-<?php
+	<?php
 	/* MODULOS FIJOS SUPERIORES */
 	include 'paginas/modulos/cabecera.php';
 	include 'paginas/modulos/redes-sociales-movil.php';
 	include 'paginas/modulos/buscador-movil.php';
 	include 'paginas/modulos/menu.php';
-	
+
+
+
 	/* NAVEGAR ENTRE PAGINAS */
-	include 'paginas/inicio.php';
-	#include 'paginas/categorias.php';
-	#include 'paginas/articulos.php';
-	
-	
-	
+	$validarRuta = "";
+	if (isset($_GET['pagina'])) {
+
+		foreach ($categorias as $key => $value) {
+			if ($_GET['pagina'] == $value['ruta_categoria']) {
+
+				$validarRuta = "categorias";
+				break;
+			}
+		} /* FOREACH */
+
+		/* VALIDAR LAS RUTAS */
+		if ($validarRuta ==  "categorias") {
+			include 'paginas/categorias.php';
+		} else {
+			include 'paginas/404.php';
+		}
+	} else {
+
+		#include 'paginas/categorias.php';
+		#include 'paginas/articulos.php';		
+		include 'paginas/inicio.php';
+	}
+
+
+
+
 	/* MODULOS FIJOS INFERIORES */
 	include 'paginas/modulos/footer.php';
-?>
+	?>
 
-<script src="vistas/js/script.js"></script>
+	<script src="vistas/js/script.js"></script>
 
 
 </body>
+
 </html>

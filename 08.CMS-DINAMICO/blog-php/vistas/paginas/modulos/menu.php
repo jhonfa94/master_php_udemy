@@ -8,47 +8,16 @@ MENU
 
 	<ul class="nav flex-column text-center">
 
-		<li class="nav-item">
+		<?php foreach ($categorias as $key => $value) :	?>
+			<li class="nav-item">
+				<a class="nav-link text-white" href="<?=$value['ruta_categoria']?>"><?=$value['descripcion_categoria']?></a>
 
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Suramérica</a>
+			</li>
 
-		</li>
+		<?php endforeach ?>
 
-		<li class="nav-item">
 
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Centroamérica</a>
-
-		</li>
-
-		<li class="nav-item">
-
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Norteamérica</a>
-
-		</li>
-
-		<li class="nav-item">
-
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Europa</a>
-
-		</li>
-
-		<li class="nav-item">
-
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Asia</a>
-
-		</li>
-
-		<li class="nav-item">
-
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Africa</a>
-
-		</li>
-
-		<li class="nav-item">
-
-			<a class="nav-link text-white" href="categorias.html">Mi viaje por Oceanía</a>
-
-		</li>
+		
 
 	</ul>
 
