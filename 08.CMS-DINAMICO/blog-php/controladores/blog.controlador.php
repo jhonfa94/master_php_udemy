@@ -27,4 +27,17 @@ class ControladorBlog
 
     }
 
+    /* MOSTRAR ARTICULOS Y CATEGORIAS CON INNER JOIN */
+    public static function ctrMostrarConInnerJoin(){
+
+        $tabla1 = "categorias";
+        $tabla2 = "articulos";
+
+        $respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1,$tabla2);
+
+        return $respuesta;
+
+
+    }
+
 }

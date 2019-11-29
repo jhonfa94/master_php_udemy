@@ -1,11 +1,13 @@
 <?php
 
 $blog = ControladorBlog::ctrMostrarBlog();
-$categorias = ControladorBlog::ctrMostrarCategorias();
-/* echo "<pre class='bg-white'>";
+$categorias = ControladorBlog::ctrMostrarCategorias(); 
+$articulos = ControladorBlog::ctrMostrarConInnerJoin();
+
+echo "<pre class='bg-white'>";
 echo "<br><br><br><br><br><br>";
-print_r($categorias);
-echo "</pre>"; */
+print_r($articulos);
+echo "</pre>";
 
 ?>
 
