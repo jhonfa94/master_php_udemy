@@ -2,8 +2,8 @@
 
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias(); 
-$articulos = ControladorBlog::ctrMostrarConInnerJoin(5);
-$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos();
+$articulos = ControladorBlog::ctrMostrarConInnerJoin(0,5,null,null);
+$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos(null,null);
 $totalPaginas = ceil(count($totalArticulos)/5);
 
 
@@ -27,14 +27,19 @@ echo "</pre>"; */
 	$validarRuta = "";
 	if (isset($_GET['pagina'])) {
 
-		if (is_numeric($_GET['pagina'])) {
-			
-			
+		$rutas = explode("/",$_GET['pagina']);
+
+		if (is_numeric($rutas[0])) {
+
+			$desde = ($rutas[0]-1) * 5;
+			$cantidad = 5;
+
+			$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,null,null);
 			
 
 		}else{
 			foreach ($categorias as $key => $value) {
-				if ($_GET['pagina'] == $value['ruta_categoria']) {
+				if ($rutas[0] == $value['ruta_categoria']) {
 	
 					$validarRuta = "categorias";
 					break;
@@ -107,7 +112,7 @@ echo "</pre>"; */
 	?>
 
 	<!-- <link rel="icon" href="vistas/img/icono.jpg"> -->
-	<link rel="icon" href="<?= $blog["logo"] ?>">
+	<link rel="icon" href="<?=$blog['dominio'] . $blog["logo"] ?>">
 
 	<!--=====================================
 	PLUGINS DE CSS
@@ -122,9 +127,9 @@ echo "</pre>"; */
 
 	<!-- JdSlider -->
 	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<link rel="stylesheet" href="vistas/css/plugins/jquery.jdSlider.css">
+	<link rel="stylesheet" href="<?=$blog['dominio']?>vistas/css/plugins/jquery.jdSlider.css">
 
-	<link rel="stylesheet" href="vistas/css/style.css">
+	<link rel="stylesheet" href="<?=$blog['dominio']?>vistas/css/style.css">
 
 	<!--=====================================
 	PLUGINS DE JS
@@ -145,13 +150,13 @@ echo "</pre>"; */
 
 	<!-- pagination -->
 	<!-- http://josecebe.github.io/twbs-pagination/ -->
-	<script src="vistas/js/plugins/pagination.min.js"></script>
+	<script src="<?=$blog['dominio']?>vistas/js/plugins/pagination.min.js"></script>
 
 	<!-- scrollup -->
 	<!-- https://markgoodyear.com/labs/scrollup/ -->
 	<!-- https://easings.net/es# -->
-	<script src="vistas/js/plugins/scrollUP.js"></script>
-	<script src="vistas/js/plugins/jquery.easing.js"></script>
+	<script src="<?=$blog['dominio']?>vistas/js/plugins/scrollUP.js"></script>
+	<script src="<?=$blog['dominio']?>vistas/js/plugins/jquery.easing.js"></script>
 
 </head>
 
@@ -163,8 +168,6 @@ echo "</pre>"; */
 	include 'paginas/modulos/redes-sociales-movil.php';
 	include 'paginas/modulos/buscador-movil.php';
 	include 'paginas/modulos/menu.php';
-
-
 
 	/* NAVEGAR ENTRE PAGINAS */
 	$validarRuta = "";
@@ -180,8 +183,15 @@ echo "</pre>"; */
 
 		/* VALIDAR LAS RUTAS */
 		if ($validarRuta ==  "categorias") {
+
 			include 'paginas/categorias.php';
-		} else {
+
+		} else if(is_numeric($rutas[0]) && $rutas[0] <= $totalPaginas ||
+				  is_numeric($rutas[1])){
+
+			include 'paginas/inicio.php';
+		}
+		else {
 			include 'paginas/404.php';
 		}
 	} else {
@@ -198,8 +208,8 @@ echo "</pre>"; */
 	include 'paginas/modulos/footer.php';
 	?>
 
-	<input type="hidden" name="rutaActual" value="<?=$blog['dominio']?>"> 
-	<script src="vistas/js/script.js"></script>
+	<input type="hidden" name="rutaActual" id="rutaActual" value="<?=$blog['dominio']?>"> 
+	<script src="<?=$blog['dominio']?>vistas/js/script.js"></script>
 
 
 </body>

@@ -12,25 +12,25 @@ BANNER
 			
 			<li>
 				
-				<img src="vistas/img/banner01.jpg" class="img-fluid">
+				<img src="<?=$blog['dominio']?>vistas/img/banner01.jpg" class="img-fluid">
 
 			</li>
 
 			<li>
 				
-				<img src="vistas/img/banner02.jpg" class="img-fluid">
+				<img src="<?=$blog['dominio']?>vistas/img/banner02.jpg" class="img-fluid">
 
 			</li>
 
 			<li>
 				
-				<img src="vistas/img/banner03.jpg" class="img-fluid">
+				<img src="<?=$blog['dominio']?>vistas/img/banner03.jpg" class="img-fluid">
 
 			</li>
 
 			<li>
 				
-				<img src="vistas/img/banner04.jpg" class="img-fluid">
+				<img src="<?=$blog['dominio']?>vistas/img/banner04.jpg" class="img-fluid">
 
 			</li>
 

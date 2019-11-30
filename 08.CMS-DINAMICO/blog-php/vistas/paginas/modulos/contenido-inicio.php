@@ -1,3 +1,16 @@
+<?php 
+	if (isset($rutas[0]) && is_numeric($rutas[0]) ) {
+				
+		$paginaActual = $rutas[0];
+
+	}else{
+		
+		$paginaActual = 1;
+
+	}
+
+?>
+
 <!--=====================================
 CONTENIDO INICIO
 ======================================-->
@@ -21,7 +34,7 @@ CONTENIDO INICIO
 
 						<a href="<?=$value['ruta_articulo']?>"><h5 class="d-block d-lg-none py-3"><?=$value['titulo_articulo']?></h5></a>
 			
-						<a href="<?=$value['ruta_articulo']?>"><img src="<?=$value['portada_articulo']?>" alt="<?=$value['titulo_articulo']?>" class="img-fluid" width="100%"></a>
+						<a href="<?=$value['ruta_articulo']?>"><img src="<?=$blog['dominio']?><?=$value['portada_articulo']?>" alt="<?=$value['titulo_articulo']?>" class="img-fluid" width="100%"></a>
 
 					</div>
 
@@ -50,7 +63,7 @@ CONTENIDO INICIO
 
 				<div class="container d-none d-md-block">
 					
-					<ul class="pagination justify-content-center" totalPaginas="<?=$totalPaginas?>"></ul>
+					<ul class="pagination justify-content-center" totalPaginas="<?=$totalPaginas?>" paginaActual="<?=$paginaActual?>" rutaPagina></ul>
 
 				</div>
 
@@ -76,7 +89,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo10.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?=$blog['dominio']?>vistas/img/articulo10.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -100,7 +113,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo09.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?=$blog['dominio']?>vistas/img/articulo09.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -124,7 +137,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo08.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?=$blog['dominio']?>vistas/img/articulo08.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -149,19 +162,19 @@ CONTENIDO INICIO
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad01.jpg" class="img-fluid">
+					<img src="<?=$blog['dominio']?>vistas/img/ad01.jpg" class="img-fluid">
 
 				</div>
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad02.jpg" class="img-fluid">
+					<img src="<?=$blog['dominio']?>vistas/img/ad02.jpg" class="img-fluid">
 
 				</div>	
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad05.png" class="img-fluid">
+					<img src="<?=$blog['dominio']?>vistas/img/ad05.png" class="img-fluid">
 
 				</div>	
 				

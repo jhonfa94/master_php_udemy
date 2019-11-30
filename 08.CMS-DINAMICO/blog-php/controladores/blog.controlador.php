@@ -28,12 +28,12 @@ class ControladorBlog
     }
 
     /* MOSTRAR ARTICULOS Y CATEGORIAS CON INNER JOIN */
-    public static function ctrMostrarConInnerJoin($cantidad){
+    public static function ctrMostrarConInnerJoin($desde, $cantidad,$item,$valor){
 
         $tabla1 = "categorias";
         $tabla2 = "articulos";
 
-        $respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1,$tabla2,$cantidad);
+        $respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1,$tabla2,$desde, $cantidad,$item,$valor);
 
         return $respuesta;
 
@@ -41,12 +41,13 @@ class ControladorBlog
     }
 
     /* MOSTRAR ARTICULOS Y CATEGORIAS CON INNER JOIN */
-    public static function ctrMostrarTotalArticulos(){
+    public static function ctrMostrarTotalArticulos($item, $valor){
 
+        
       
         $tabla= "articulos";
 
-        $respuesta = ModeloBlog::mdlMostrarTotalarticulos($tabla);
+        $respuesta = ModeloBlog::mdlMostrarTotalarticulos($tabla,$item,$valor);
 
         return $respuesta;
 

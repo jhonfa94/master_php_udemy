@@ -13,7 +13,8 @@ CABECERA
 
 				<a href="<?=$blog['dominio']?>">
 
-					<img src="<?=$blog['logo']?>" alt="Logo de Juanito Travel" class="img-fluid logotipo">
+					<img src="<?=$blog['dominio'].$blog['logo']?>" alt="Logo de Juanito Travel"  class="img-fluid logotipo">
+					
 
 				</a>
 
