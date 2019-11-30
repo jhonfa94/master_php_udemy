@@ -2,12 +2,15 @@
 
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias(); 
-$articulos = ControladorBlog::ctrMostrarConInnerJoin();
+$articulos = ControladorBlog::ctrMostrarConInnerJoin(5);
+$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos();
+$totalPaginas = ceil(count($totalArticulos)/5);
 
-echo "<pre class='bg-white'>";
+
+/* echo "<pre class='bg-white'>";
 echo "<br><br><br><br><br><br>";
 print_r($articulos);
-echo "</pre>";
+echo "</pre>"; */
 
 ?>
 
@@ -24,13 +27,21 @@ echo "</pre>";
 	$validarRuta = "";
 	if (isset($_GET['pagina'])) {
 
-		foreach ($categorias as $key => $value) {
-			if ($_GET['pagina'] == $value['ruta_categoria']) {
+		if (is_numeric($_GET['pagina'])) {
+			
+			
+			
 
-				$validarRuta = "categorias";
-				break;
+		}else{
+			foreach ($categorias as $key => $value) {
+				if ($_GET['pagina'] == $value['ruta_categoria']) {
+	
+					$validarRuta = "categorias";
+					break;
+				}
 			}
 		}
+
 
 		if ($validarRuta == "categorias") {
 
@@ -187,6 +198,7 @@ echo "</pre>";
 	include 'paginas/modulos/footer.php';
 	?>
 
+	<input type="hidden" name="rutaActual" value="<?=$blog['dominio']?>"> 
 	<script src="vistas/js/script.js"></script>
 
 

@@ -28,12 +28,25 @@ class ControladorBlog
     }
 
     /* MOSTRAR ARTICULOS Y CATEGORIAS CON INNER JOIN */
-    public static function ctrMostrarConInnerJoin(){
+    public static function ctrMostrarConInnerJoin($cantidad){
 
         $tabla1 = "categorias";
         $tabla2 = "articulos";
 
-        $respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1,$tabla2);
+        $respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1,$tabla2,$cantidad);
+
+        return $respuesta;
+
+
+    }
+
+    /* MOSTRAR ARTICULOS Y CATEGORIAS CON INNER JOIN */
+    public static function ctrMostrarTotalArticulos(){
+
+      
+        $tabla= "articulos";
+
+        $respuesta = ModeloBlog::mdlMostrarTotalarticulos($tabla);
 
         return $respuesta;
 
